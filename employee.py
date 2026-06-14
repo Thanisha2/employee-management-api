@@ -4,9 +4,8 @@ from datetime import date
 
 app = Flask(__name__)
 
-# ─────────────────────────────────────────
 # 1. DATABASE CONNECTION
-# ─────────────────────────────────────────
+
 def get_db():
     conn = mysql.connector.connect(
         host="localhost",
@@ -17,13 +16,12 @@ def get_db():
     return conn
 
 
-# ─────────────────────────────────────────
 # 2. HOME ROUTE
-# ─────────────────────────────────────────
+
 @app.route("/")
 def home():
     return jsonify({
-        "message": "👋 Welcome to Employee Management API",
+        "message": " Welcome to Employee Management API",
         "version": "1.0",
         "author": "Thanisha M Shetty",
         "endpoints": {
@@ -37,9 +35,9 @@ def home():
     })
 
 
-# ─────────────────────────────────────────
+
 # 3. GET ALL EMPLOYEES
-# ─────────────────────────────────────────
+
 @app.route("/employees", methods=["GET"])
 def get_all_employees():
     conn = get_db()
@@ -60,9 +58,9 @@ def get_all_employees():
     }), 200
 
 
-# ─────────────────────────────────────────
+
 # 4. GET EMPLOYEE BY ID
-# ─────────────────────────────────────────
+
 @app.route("/employees/<int:emp_id>", methods=["GET"])
 def get_employee(emp_id):
     conn = get_db()
@@ -80,9 +78,8 @@ def get_employee(emp_id):
     return jsonify({"success": True, "employee": emp}), 200
 
 
-# ─────────────────────────────────────────
 # 5. GET EMPLOYEES BY DEPARTMENT
-# ─────────────────────────────────────────
+
 @app.route("/employees/dept/<string:dept_name>", methods=["GET"])
 def get_by_department(dept_name):
     conn = get_db()
@@ -103,9 +100,9 @@ def get_by_department(dept_name):
     }), 200
 
 
-# ─────────────────────────────────────────
+
 # 6. ADD NEW EMPLOYEE (POST)
-# ─────────────────────────────────────────
+
 @app.route("/employees", methods=["POST"])
 def add_employee():
     data = request.get_json()
@@ -134,9 +131,9 @@ def add_employee():
     }), 201
 
 
-# ─────────────────────────────────────────
+
 # 7. UPDATE EMPLOYEE (PUT)
-# ─────────────────────────────────────────
+
 @app.route("/employees/<int:emp_id>", methods=["PUT"])
 def update_employee(emp_id):
     data = request.get_json()
@@ -171,9 +168,8 @@ def update_employee(emp_id):
     }), 200
 
 
-# ─────────────────────────────────────────
 # 8. DELETE EMPLOYEE
-# ─────────────────────────────────────────
+
 @app.route("/employees/<int:emp_id>", methods=["DELETE"])
 def delete_employee(emp_id):
     conn = get_db()
@@ -192,11 +188,10 @@ def delete_employee(emp_id):
     }), 200
 
 
-# ─────────────────────────────────────────
 # 9. RUN APP
-# ─────────────────────────────────────────
+
 if __name__ == "__main__":
-    print("🚀 Employee Management API Running!")
-    print("📍 Open browser: http://127.0.0.1:5000")
-    print("📍 All employees: http://127.0.0.1:5000/employees")
+    print(" Employee Management API Running!")
+    print(" Open browser: http://127.0.0.1:5000")
+    print(" All employees: http://127.0.0.1:5000/employees")
     app.run(debug=True)
