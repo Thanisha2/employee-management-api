@@ -10,7 +10,7 @@ def get_db():
     conn = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="yourpassword",  # 🔁 change to your MySQL password
+        password="yourpassword",  # change to your MySQL password
         database="employee_db"
     )
     return conn
